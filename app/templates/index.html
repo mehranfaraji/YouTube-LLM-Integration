@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Videos</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Search Videos</h1>
+        
+        <form method="POST">
+            <input type="text" name="query" placeholder="Enter your query" required>
+            <button type="submit">Search</button>
+        </form>
+        
+        {% if results %}
+        <h2>Results:</h2>
+        <ul>
+            {% for result in results %}
+                <li><strong>{{ result.title }}</strong> - <a href="https://www.youtube.com/watch?v={{ result.video_id }}">Watch</a></li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+    </div>
+</body>
+</html>
