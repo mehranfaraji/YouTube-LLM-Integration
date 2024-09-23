@@ -22,9 +22,8 @@ def search():
         query = request.form['query']
 
         results = get_result(query, df, model, dist)
-        result_list = results.to_dicts()
 
-        return render_template('index.html', query=query, results=result_list)
+        return render_template('index.html', query=query, results=results)
 
     return render_template('index.html', query=query, results=results)
 
