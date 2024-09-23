@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Results</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Results for "{{ query }}"</h1>
+        <div class="results">
+            {% for result in results %}
+            <div class="result-item">
+                <a href="https://www.youtube.com/watch?v={{ result['video_id'] }}" target="_blank">
+                    <img src="https://img.youtube.com/vi/{{ result['video_id'] }}/0.jpg" alt="Video Thumbnail">
+                    <h3>{{ result['title'] }}</h3>
+                </a>
+                <p>{{ result['transcript'][:150] }}...</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>

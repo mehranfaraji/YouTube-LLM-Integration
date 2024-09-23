@@ -43,3 +43,13 @@ def returnSearchResults(query: str, df: pl.lazyframe.frame.LazyFrame, model, dis
 
     # return indexes of search results
     return idx_below_threshold[idx_sorted][:top_k]
+
+def get_search_results_df(df: pl.lazyframe.frame.LazyFrame, idx: np.ndarray) -> pl.DataFrame:
+    df_tmp = df.with_row_index("__index")
+    return df_tmp.filter(pl.col("__index").is_in(idx)).select(['video_id', 'title', 'transcript']).collect()
+
+def get_result(query, df, model, dist):
+    idx = returnSearchResults(query, df, model, dist)
+    df_result = get_search_results_df(df, idx)
+    return df_result
+
