@@ -42,16 +42,18 @@ def returnSearchResults(query: str, df: pl.lazyframe.frame.LazyFrame, model, dis
     idx_below_threshold = np.argwhere(dist_arr.flatten() < threshold).flatten()
     idx_sorted = np.argsort(dist_arr[idx_below_threshold], axis=0).flatten()
 
-    results_df = df.select(['title', 'video_id']).collect()[idx_sorted]
-
-    # Get titles and video_ids based on sorted indices
-    sorted_titles = results_df['title'][idx_sorted]
-    sorted_video_ids = results_df['video_id'][idx_sorted]
-
-    # Combine the sorted titles and video_ids into a list of dictionaries
-    results = [{"title": title, "video_id": video_id} for title, video_id in zip(sorted_titles, sorted_video_ids)]
+    results_df = df.select(['title', 'video_id']).collect()[idx_below_threshold[idx_sorted][:top_k]]
     
-    return results[:top_k]
+
+    # # Get titles and video_ids based on sorted indices
+    # sorted_titles = results_df['title'][idx_sorted]
+    # sorted_video_ids = results_df['video_id'][idx_sorted]
+    
+
+    # # Combine the sorted titles and video_ids into a list of dictionaries
+    # results = [{"title": title, "video_id": video_id} for title, video_id in zip(sorted_titles, sorted_video_ids)]
+    
+
 
 
 @app.route('/', methods=['GET', 'POST'])
