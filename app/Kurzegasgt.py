@@ -1,19 +1,10 @@
-import requests
-import json
 import polars as pl
-import matplotlib.pyplot as plt
-from youtube_transcript_api import YouTubeTranscriptApi
-from os import getenv
-import dotenv
-from flask import Flask
 import numpy as np
 from sentence_transformers import SentenceTransformer
 from sklearn.metrics import DistanceMetric
 
-dotenv.load_dotenv()
 
 
-YOUTUBE_API_KEY = getenv("YOUTUBE_API_KEY")
 model_name = 'all-MiniLM-L6-v2'
 model = SentenceTransformer(model_name)
 df = pl.scan_parquet('data/video-index.parquet')
