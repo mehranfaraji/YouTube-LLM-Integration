@@ -44,7 +44,8 @@ def returnSearchResults(query: str, df: pl.lazyframe.frame.LazyFrame, model, dis
 
     results_df = df.select(['title', 'video_id']).collect()[idx_below_threshold[idx_sorted][:top_k]]
     
-
+    results = results_df.to_dicts()
+    return results
     # # Get titles and video_ids based on sorted indices
     # sorted_titles = results_df['title'][idx_sorted]
     # sorted_video_ids = results_df['video_id'][idx_sorted]

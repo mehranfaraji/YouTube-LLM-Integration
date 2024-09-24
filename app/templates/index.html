@@ -19,7 +19,12 @@
         <h2>Results:</h2>
         <ul>
             {% for result in results %}
-                <li><strong>{{ result.title }}</strong> - <a href="https://www.youtube.com/watch?v={{ result.video_id }}">Watch</a></li>
+                <div class="result-item">
+                    <a href="https://www.youtube.com/watch?v={{ result.video_id }}" target="_blank" class="thumbnail-container">
+                        <img src="https://img.youtube.com/vi/{{ result.video_id }}/0.jpg" alt="video thumbail">
+                    </a>
+                    <li><strong>{{ result.title }}</strong> </li>
+                </div>
             {% endfor %}
         </ul>
         {% endif %}

@@ -18,6 +18,27 @@ h1, h2 {
     color: #333;
 }
 
+.thumbnail-container{
+    display: block;
+    flex-shrink: 0;
+    margin-right: 20px;
+}
+
+.thumbnail-container img{
+    max-width: 250px;
+    border-radius: 8px;
+}
+
+.result-item{
+    background-color: cadetblue;
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    text-align: left;
+}
+
 form {
     display: flex;
     flex-direction: column;
@@ -32,7 +53,7 @@ input[type="text"] {
 
 button {
     padding: 10px;
-    background-color: #28a745;
+    background-color: midnightblue;
     color: white;
     border: none;
     border-radius: 4px;
@@ -40,7 +61,7 @@ button {
 }
 
 button:hover {
-    background-color: #218838;
+    background-color: #6a68dd;
 }
 
 ul {
